@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leisuri Imóveis</title>
+  <link rel="icon" type="image/x-icon" href="../imagem/leisuriLogo.png">
+  <meta name="viewport" content="width=device-width">
+  <!-- -----------------------------------------------------------------ESTILOS------------------------------------------------------------------ -->
+  <!-- BOOTSTRAP CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- SWIPER -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <!-- @MEDIA -->
+  <link th:href="@{/css/imovel_css.css}" rel="Stylesheet" />
+
+  <style>
+   .localidade {
+    color: red !important;
+   }
+  </style>
+</head>
+<body>
+	<div style="display: flex; justify-content: center; align-items: center; margin-top: 30px ">
+		<a th:href="@{/imovel/criar}"><button type="button" class="btn btn-outline-info">Cadastrar Imóvel</button></a>
+	</div>
+    <div>
+    <div id="anuncios-area">
+        <div class="container mt-5 mb-5">
+          <div class="row just-content-center swiper mySwiper mx-auto">
+            <div class="swiper-wrapper col-md-3">
+
+              <div class="swiper-slide col-md-3" th:each="imovel : ${imoveis}">
+
+                <div class="card" style="width: 90%; height: auto;">
+                  <img src="https://meuimobiliario.com/wp-content/uploads/2023/03/Casas-Reali-Residencial-Teresina-PI.jpg" class="card-img-top img-fluid" alt="card03">
+                  <div class="card-body">
+                    <h5 class="card-title"> <span th:text="'R$' + ${imovel.preco}"></span></h5>
+                    <p class="card-text"><i class="fa-solid fa-address-book"></i><span th:text="' Endereço: ' + ${imovel.endereco}"> </span> </p>
+                    <p class="card-text"><i class="fa-solid fa-clipboard"></i><span th:text="' Decrição: ' + ${imovel.descricao}"> </span> </p>
+                    <p class="card-text"><i class="fa-solid fa-tag"></i><span th:text="' Área Total: ' + ${imovel.area} + 'm²'"> </span> </p>
+                    <p class="card-text"><i class="fa-solid fa-car"></i><span th:text="' Vagas no estacionamento: ' + ${imovel.vaga}"> </span> </p>
+                    <p class="card-text"><i class="fa-solid fa-file"></i><span th:text="' ID: ' + ${imovel.id}"> </span> </p>
+                    <a href="https://www.google.com/maps/place/Barueri+-+SP/@-23.511658,-46.9644699,12z/data=!3m1!4b1!4m6!3m5!1s0x94cf03dd6cef1295:0x746b94a987d123a3!8m2!3d-23.5035038!4d-46.8785555!16zL20vMDN4emxk?entry=ttu" alt="Local" class="localidade"><i class="fa-solid fa-location-dot"></i> Barueri-SP</a>
+                    <a th:href="@{/imovel/{id}/deletar (id=${imovel.id})}" class="btn btn-danger">Deletar</a>
+                    <a th:href="@{/imovel/{id}/atualizar (id=${imovel.id})}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{/imovel/{id}/detalhar (id=${imovel.id})}" class="btn btn-success">Detalhe</a>
+                  </div>
+                </div>
+                
+              </div>
+
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+    </div>
+      <!-- -----------------------------------------------------------------SCRIPTS------------------------------------------------------------------ -->
+  <!-- JS SWIPER -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <!-- JS BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>  <!-- integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" -->
+  <!-- JS -->
+  <script th:src="@{/javascript/imovel_javascript.js}"></script>
+   <!-- FONT AWESOME ICONS -->
+   <script src="https://kit.fontawesome.com/4c7894104f.js" crossorigin="anonymous"></script>
+   <script th:inline="javascript">
+	   /*<![CDATA[*/
+	   
+	   var mensagem = /*[[${mensagem}]]*/ null
+		if (mensagem != null) {
+			alert(mensagem);
+		}
+		
+		/*]]>*/
+   </script>
+</body>

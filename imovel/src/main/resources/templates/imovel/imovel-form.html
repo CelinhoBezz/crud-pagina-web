@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!--- CSS BOOTSTRAP  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de imóveis</title>
+    <style>
+        #form {
+            margin-top: 30px !important;
+            margin-left: 30% !important;
+            margin-right: 30% !important;
+            padding: 35px;
+            border-style: solid;
+            border-color: rgb(153, 153, 153);
+            border-width: 1px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;"><b>Cadastro de Imóvel</b></h1>
+    <form id="form" action="/imovel/cadastrar-atualizar" method="post">
+		<input type="hidden" name="id" th:value="${imovel.id}">
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="nome">Nome do fornecedor</label>
+              <input type="text" id="nome" class="form-control" placeholder="Nome" name="nomeFornecedor" th:value="${imovel.nomeFornecedor}"/>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="email">Email do fornecedor</label>
+              <input type="text" id="email" class="form-control" placeholder="Email" name="emailFornecedor" th:value="${imovel.emailFornecedor}"/>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Text input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="endereco">Endereço</label>
+            <input type="text" id="endereco" class="form-control" placeholder="Endereço" name="endereco" th:value="${imovel.endereco}"/>
+         
+        </div>
+      
+        <!-- Text input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="select">Estado</label>
+            <select id="select" class="form-control" name="estado">
+                <option value="AC">Acre</option>
+  				<option value="AL">Alagoas</option>
+  				<option value="AP">Amapá</option>
+  				<option value="AM">Amazonas</option>
+  				<option value="BA">Bahia</option>
+  				<option value="CE">Ceará</option>
+  				<option value="DF">Distrito Federal</option>
+  				<option value="ES">Espírito Santo</option>
+  				<option value="GO">Goiás</option>
+  				<option value="MA">Maranhão</option>
+  				<option value="MT">Mato Grosso</option>
+  				<option value="MS">Mato Grosso do Sul</option>
+  				<option value="MG">Minas Gerais</option>
+  				<option value="PA">Pará</option>
+  				<option value="PB">Paraíba</option>
+  				<option value="PR">Paraná</option>
+  				<option value="PE">Pernambuco</option>
+  				<option value="PI">Piauí</option>
+  				<option value="RJ">Rio de Janeiro</option>
+  				<option value="RN">Rio Grande do Norte</option>
+  				<option value="RS">Rio Grande do Sul</option>
+  				<option value="RO">Rondônia</option>
+  				<option value="RR">Roraima</option>
+  				<option value="SC">Santa Catarina</option>
+  				<option value="SP">São Paulo</option>
+  				<option value="SE">Sergipe</option>
+  				<option value="TO">Tocantins</option>
+            </select>
+          
+        </div>
+      
+        <div class="form-outline mb-4">
+            <label class="form-label" for="tipo">Tipo de Imóvel</label>
+            <select id="tipo" class="form-control" name="tipo">
+                <option value="Apartamento">Apartamento</option>
+                <option value="Residencial">Residencial</option>
+                <option value="Condomínio">Condomínio</option>
+                <option value="Mansão">Mansão</option>
+                <option value="Comercial">Comercial</option>
+            </select>
+        </div>
+      
+        <!-- Number input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="area">Área em m²</label>
+            <input type="text" id="area" class="form-control" placeholder="Área do imovel (m²)" name="area" th:value="${imovel.area}"/>
+       
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="vaga">Quantidades de vagas no estacionamento</label>
+            <input type="number" id="vaga" class="form-control" placeholder="Vagas no estacionamento" name="vaga" th:value="${imovel.vaga}"/>
+       
+        </div>
+      
+        
+        <div class="form-outline mb-4">
+            <label class="form-label" for="descricao">Decrição</label>
+            <input type="text" id="descricao" class="form-control" placeholder="Descrição" name="descricao" th:value="${imovel.descricao}"/>
+         
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="preco">Preço R$</label>
+            <input type="text" id="preco" class="form-control" placeholder="Preço (R$)" name="preco" th:value="${imovel.preco}"/>
+       
+        </div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="informacao">Informações</label>
+            <textarea class="form-control" id="informacao" rows="4" placeholder="Informações adicionais do imóvel" name="informacao" th:text="${imovel.informacao}"></textarea>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-check d-flex justify-content-center mb-4">
+          <input class="form-check-input me-2" type="checkbox" value="" id="check" checked />
+          <label class="form-check-label" for="check"> As Informações inseridas são veridicas? </label>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Enviar</button>
+      </form>
+    <!--- JAVASCRIPT BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var mensagem = /*[[${mensagem}]]*/ null
+		if (mensagem != null) {
+			alert(mensagem);
+		}
+		
+		var id = /*[[${imovel.id}]]*/ null
+		if (id != 0) {
+			var value_estado = /*[[${imovel.estado}]]*/ null
+			var select_estado = document.querySelector("#select")
+			var selectedOption_estado = select_estado.querySelector('option[value='+value_estado+']')
+			selectedOption_estado.selected = true
+			
+			var value_tipo = /*[[${imovel.tipo}]]*/ null
+			var select_tipo = document.querySelector("#tipo")
+			var selectedOption_tipo = select_tipo.querySelector('option[value='+value_tipo+']')
+			selectedOption_tipo.selected = true
+		}
+		/*]]>*/
+	</script>
+</body>
+</html>
